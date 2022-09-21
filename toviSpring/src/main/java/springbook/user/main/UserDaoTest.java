@@ -1,7 +1,11 @@
 package springbook.user.main;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import java.sql.SQLException;
 
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
@@ -9,26 +13,24 @@ import springbook.user.dao.UserDao;
 import springbook.user.domain.User;
 
 public class UserDaoTest{
-	public static void main(String[] args)  throws ClassNotFoundException, SQLException {
+	
+	@Test
+	public void addAndGet()  throws SQLException, ClassNotFoundException {
 		ApplicationContext context = 
 				new GenericXmlApplicationContext("applicationContext.xml");
-		UserDao dao = context.getBean("userDao", UserDao.class);
-		UserDao dao2 = context.getBean("userDao", UserDao.class);
 		
-		System.out.println(dao == dao2);
+		UserDao dao = context.getBean("userDao", UserDao.class);
 		User user = new User();
-		user.setId("keaunsol65");
+		user.setId("keaunsl165");
 		user.setName("나큰솔");
 		user.setPassword("password");
 		
 		dao.add(user);
 		
-		System.out.println(user.getId() + " 등록 성공");
-		
 		User user2 = dao.get(user.getId());
-		System.out.println(user2.getName());
-		System.out.println(user2.getPassword());
-		System.out.println(user2.getId() + " 등록 성공");
+		
+		assertThat(user2.getName(), is(user.getName()));
+		assertThat(user2.getPassword(), is(user.getPassword()));
 	}
 
 }

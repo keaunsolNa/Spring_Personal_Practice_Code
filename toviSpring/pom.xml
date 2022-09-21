@@ -33,6 +33,13 @@
 			<version>${spring-framework.version}</version>
 		</dependency>
 		<dependency>
+    		<groupId>org.junit.jupiter</groupId>
+    		<artifactId>junit-jupiter-api</artifactId>
+    		<version>5.8.2</version>
+    		<scope>test</scope>
+		</dependency>
+		
+		<dependency>
 	        	<groupId>org.bgee.log4jdbc-log4j2</groupId>
 	          	<artifactId>log4jdbc-log4j2-jdbc4</artifactId>
 	         	<version>1.16</version>
